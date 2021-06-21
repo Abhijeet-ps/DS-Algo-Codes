@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+//Node struct with a constructor.
+
 struct Node{
     int data;
     Node *next;
@@ -9,6 +11,8 @@ struct Node{
         next = NULL;
     }
 };
+
+//Prints linkedlist iteratively.
 
 void printList(Node *head){
     Node *curr = head;
@@ -19,6 +23,8 @@ void printList(Node *head){
     }
 }
 
+//Prints linkedlist recursively.
+
 void printListR(Node *head){
     if(head == NULL){
         return;
@@ -26,6 +32,8 @@ void printListR(Node *head){
     cout<<head->data<<" ";
     printListR(head->next);
 }
+
+//Searches the element x in the linkedlist iteratively.
 
 int search(Node* head, int x){
     int index = 0;
@@ -38,6 +46,9 @@ int search(Node* head, int x){
     }
     return -1;
 }
+
+//Searches the element x in the linkedlist recursively.
+
 int searchr(Node *head, int x){
     if(head == NULL){
         return -1;
@@ -52,11 +63,16 @@ int searchr(Node *head, int x){
     }
 }
 
+//Inserts a node with data x at the head position of the linkedlist and returns new head.
+
 Node * insertBegin(Node* head, int x){
     Node*temp = new Node(x);
     temp->next = head;
     return temp;
 }
+
+//Inserts a node with data x at the end of  thr linkedlist and returns the head,
+
 Node * insertEnd(Node* head, int x){
     Node *temp = new Node(x);
     if(head == NULL){
@@ -70,6 +86,8 @@ Node * insertEnd(Node* head, int x){
     return head;
 }
 
+//Deletes the head node of the linkedlist and returns the new head.
+
 Node* deleteHead(Node*head){
     if(head == NULL){
         return NULL;
@@ -80,6 +98,8 @@ Node* deleteHead(Node*head){
     return temp;
     }
 }
+
+//Deletes the last node of the linkedlist and returns the head.
 
 Node * dellast(Node* head){
     if(head == NULL){
@@ -97,6 +117,8 @@ Node * dellast(Node* head){
     return head;
 
 }
+
+//Inserts a new node at the position pos with data x.
 
 Node* insertpos(Node* head, int pos, int x){
     Node* temp = new Node(x);
@@ -116,6 +138,8 @@ Node* insertpos(Node* head, int pos, int x){
     return head;
 }
 
+//Inserts a new node with data x in the correct position in a sorted linkedlist.
+
 Node* insertinorder(Node* head, int x){
     Node* temp = new Node(x);
     if(head == NULL){
@@ -134,6 +158,11 @@ Node* insertinorder(Node* head, int x){
     return head;
 }
 
+//Prints the middle element of the linked list.
+
+//Uses 2 pointers fast and slow, slow is incremented one place while fast is incremented 2 place 
+//every time, So when the fast reaches NULL, slow is at the middle position in the linkedlist.
+
 void printMiddle(Node * head){
     if(head == NULL){
         return;
@@ -146,6 +175,12 @@ void printMiddle(Node * head){
     }
     cout<<slow->data;
 }
+
+//Prints the nth element from the end of the linkedlist.
+
+//Uses 2 pointers first and second. Firstly first pointer is moved to the nth position from the head then second pointer is 
+//initialized from the head and the loop is executed while first is not equal to NULL. When first pointer reaches NULL we
+//have the second pointer on the nth element from the last node of thr linkedlist.
 
 void printfromEnd(Node *head, int n){
     if(head == NULL) return;
@@ -162,6 +197,10 @@ void printfromEnd(Node *head, int n){
     cout<<second->data;
 }
 
+//Reverses a linked list and returns the new head.
+
+//Uses 2 ponters curr and prev to store the data of nodes. 
+
 Node* reverse(Node* head){
     Node* curr = head;
     Node* prev = NULL;
@@ -174,6 +213,11 @@ Node* reverse(Node* head){
     return prev;
 }
 
+//Reverses a linkedlist recursively and returns the new head.
+
+//In this method we suppose that the last n elements of the linkedlist are reversed and we then handle the original head
+//of the linkedlist. 
+
 Node* reverserec1(Node* head){
     if(head == NULL or head->next == NULL){
         return head;
@@ -185,6 +229,10 @@ Node* reverserec1(Node* head){
     return rest_head;
 }
 
+//Reverses a linkedlist recursively and returns the new head.
+
+//In this method we suppose the first n nodes of the linkedlist are reversed and then we handle the last node of the linkedlist.
+
 Node* reverserec2(Node* curr, Node* prev){
     if(curr == NULL){
         return prev;
@@ -193,6 +241,8 @@ Node* reverserec2(Node* curr, Node* prev){
     curr->next = prev;
     return reverserec2(next, curr);
 }
+
+//Removes all the duplicate elements from a sorted linkedlist.
 
 void removeDups(Node* head){
     Node* curr = head;
